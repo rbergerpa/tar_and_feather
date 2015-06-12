@@ -30,9 +30,9 @@ WHISKEY == LEFT WATER and LEFT FEATHER
 
 PREEMPTIVE DUNKING
 
-$ sudo dunk_right.py     fires the horn and right feathers & water
-$ sudo dunk_left.py      fires the horn and left feathers & water
-$ sudo dunk_both.py      fires the horn and both feathers & water
+$ right.sh               fires the horn and right feathers & water
+$ left.sh                fires the horn and left feathers & water
+$ both.sh                fires the horn and both feathers & water
 
 (Note, intent is for whiskey to be left, taxes right)
 
