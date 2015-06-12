@@ -63,6 +63,31 @@ class WhiskeyGame():
             if ans == 'n' or ans == 'N':
                 return False
 
+    def tally_votes(self, text, tweetstring):
+        print "Tallying votes, text is {0}".format(text)
+        # too many people are going to mis-spell this, so...
+        # if "@wiglewhiskey" in text:
+        if "#taxes" in text:
+            print "Found vote for #taxes."
+            # self.taxes_tally += text.count("#taxes")   # chicago-style voting
+            self.taxes_tally += 1
+            self.tax_tweets.append(tweetstring)
+        if "#tax" in text:
+            print "Found vote for #taxes."
+            # self.taxes_tally += text.count("#tax")   # chicago-style voting
+            self.taxes_tally += 1
+            self.tax_tweets.append(tweetstring)
+        if "#whiskey" in text:
+            print "Found vote for #whiskey."
+            # self.whiskey_tally += text.count("#whiskey")  # chicago-style voting
+            self.whiskey_tally += 1
+            self.whiskey_tweets.append(tweetstring)
+        if "#whisky" in text:
+            print "Found vote for #whiskey."
+            # self.whiskey_tally += text.count("#whisky")  # chicago-style voting
+            self.whiskey_tally += 1
+            self.whiskey_tweets.append(tweetstring)
+        
     def game_over(self):
         print "GAME OVER"
         if self.whiskey_tally == self.taxes_tally:
@@ -84,16 +109,7 @@ class WhiskeyGame():
             tweetstring = tweet['user']['screen_name'] + '->' + tweet['text']
             print tweetstring
             text = tweet['text'].lower()
-# too many people are going to mis-spell this, so...
-#            if "@wiglewhiskey" in text:
-            if "#taxes" in text or "#tax" in text:
-                print "Found vote for #taxes."
-                self.taxes_tally += 1
-                self.tax_tweets.append(tweetstring)
-            if "#whiskey" in text or "#whisky" in text:
-                print "Found vote for #whiskey."
-                self.whiskey_tally += 1
-                self.whiskey_tweets.append(tweetstring)
+            self.tally_votes(text, tweetstring)
             if item.id > self.last_id:
                 self.last_id = item.id
 
@@ -127,9 +143,9 @@ class WhiskeyGame():
             sys.stdout.flush()
             time.sleep(time_slice)
             if self.dunk.check_big_red_button():
-                print("\n")
+                print("")
                 return True
-        print("\n")
+        print("")
         return False
 
     def start(self):
