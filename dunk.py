@@ -41,6 +41,7 @@ class Dunk():
         GPIO.output(self.HORN_PIN, self.OFF)
     
     def dunk_left(self):
+        self.blow_horn()
         GPIO.output(self.LEFT_WATER_PIN, self.ON)
         time.sleep(self.WATER_DURATION)
         GPIO.output(self.LEFT_WATER_PIN, self.OFF)
@@ -49,6 +50,7 @@ class Dunk():
         GPIO.output(self.LEFT_FEATHER_PIN, self.OFF)
     
     def dunk_right(self):
+        self.blow_horn()
         GPIO.output(self.RIGHT_WATER_PIN, self.ON)
         time.sleep(self.WATER_DURATION)
         GPIO.output(self.RIGHT_WATER_PIN, self.OFF)
@@ -59,6 +61,7 @@ class Dunk():
     # Note, dunk_both can't just call dunk_left and dunk_right 
     # because we want them to go off simultaneously.
     def dunk_both(self):
+        self.blow_horn()
         GPIO.output(self.RIGHT_WATER_PIN, self.ON)
         GPIO.output(self.LEFT_WATER_PIN, self.ON)
         time.sleep(self.WATER_DURATION)
