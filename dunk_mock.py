@@ -70,6 +70,9 @@ class Dunk():
         print "LEFT FEATHER OFF"
 
     def check_big_red_button(self):
+        # comment out this next line to enable mock big red button
+        return False 
+    
         self.big_red_button_presses += 1
         print "Checking big red button, presses is {0}".format(self.big_red_button_presses)
         if self.big_red_button_presses >= self.big_red_button_delay:
