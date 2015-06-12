@@ -1,0 +1,6 @@
+Should rename game_oo run_game() to something more sensible, like do_poll()
+
+Should move the various timing variables and @mention and #hashtag flags and messages
+to a JSON file somewhere.
+
+done? - Hardware Interrupt/Dunk Button
