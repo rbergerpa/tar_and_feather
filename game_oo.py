@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import sys
 import json
 import twitter
 import time
@@ -115,11 +116,16 @@ class WhiskeyGame():
         print "Taxes:   {0} votes.".format(self.taxes_tally)
         print "Whiskey: {0} votes.".format(self.whiskey_tally)
 
+
     def sleep(self, delay):
-        timeslice = 0.2
+        time_slice = 0.2
+        slice_count = int(delay/time_slice)
+        print ("Sleeping for {0} fifths of a second").format(slice_count)
         # sleep for half a second, check the button, repeat
-        for poll in range(1, delay*int(delay/timeslice)):
-            time.sleep(timeslice)
+        for poll in range(1, slice_count):
+            sys.stdout.write(".")
+            sys.stdout.flush()
+            time.sleep(time_slice)
             if self.dunk.check_big_red_button():
                 return True
         return False
