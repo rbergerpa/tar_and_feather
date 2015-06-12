@@ -9,6 +9,8 @@
 120 seconds game duration
  10 second polling loop
 
+Whoever gets the LEAST votes gets "dunked" (spraye with water and feathers).
+
 Vote by tweeting:
 
 @hackpgh @wiglewhiskey #taxes
@@ -17,11 +19,14 @@ Vote by tweeting:
 Note:  @wiglewhiskey is not a hard requirement
 
 Currently the hashtag can be #tax or #taxes, #whiskey or #whisky
-
+p
 If both hashtags are present, the tweet counts as a vote for both.
 
 Note that there is a 5-10 second delay between tweeting and tweet
 showing up in API.
+
+TAXES   == RIGHT WATER and RIGHT FEATHER
+WHISKEY == LEFT WATER and LEFT FEATHER
 
 PREEMPTIVE DUNKING
 
