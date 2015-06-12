@@ -33,15 +33,16 @@ class WhiskeyGame():
             tweetstring = tweet['user']['screen_name'] + '->' + tweet['text']
             print tweetstring
             text = tweet['text'].lower()
-            if "@wiglewhiskey" in text:
-                if "#taxes" in text or "#tax" in text:
-                    print "Found vote for #taxes."
-                    self.taxes_tally += 1
-                    self.tax_tweets.append(tweetstring)
-                if "#whiskey" in text or "#whisky" in text:
-                    print "Found vote for #whiskey."
-                    self.whiskey_tally += 1
-                    self.whiskey_tweets.append(tweetstring)
+# too many people are going to mis-spell this, so...
+#            if "@wiglewhiskey" in text:
+            if "#taxes" in text or "#tax" in text:
+                print "Found vote for #taxes."
+                self.taxes_tally += 1
+                self.tax_tweets.append(tweetstring)
+            if "#whiskey" in text or "#whisky" in text:
+                print "Found vote for #whiskey."
+                self.whiskey_tally += 1
+                self.whiskey_tweets.append(tweetstring)
             if item.id > self.last_id:
                 self.last_id = item.id
 
