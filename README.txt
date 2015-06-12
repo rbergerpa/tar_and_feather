@@ -17,8 +17,8 @@ NORMAL OPERATION:
 6) press control-c to break out of prompt loop and exit script.
 
 GAME RULES:
-
-120 seconds game duration
+ 
+120 seconds game duration (see ADJUSTING TIMING at end of file)
  10 second polling loop
 
 Whoever gets the LEAST votes gets "dunked" (spraye with water and feathers).
@@ -80,3 +80,26 @@ Taxes:   0 votes.
 Whiskey: 0 votes.
 Next game? [n]|y: y
 ----------------------------------------------------------------------
+
+
+ADJUSTING TIMING AND FLAGS
+
+countdown time (currently 120 seconds) and polling delay (currently 10
+seconds) are controlled in game_oo.py, by the variables countdown and
+sleepdelay, at the beginning of the game_loop() method.
+
+The horn, water and feather durations are controlled in dunk.py at the
+top of the __init__() method, by these variables:
+
+        self.HORN_DURATION = 2
+        self.PAUSE_DURATION = 1
+        self.WATER_DURATION = 1
+        self.FEATHER_DURATION = 1
+
+The primary search string (currently "@HackPgh" is set in game_oo.py
+in the variable self.SEARCH_STRING, at the beginning of the __init__()
+method.
+
+The secondary search strings (currently "#whiskey" and "#taxes") are set 
+in game_oo.py in the run_game() method.
+
