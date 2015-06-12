@@ -104,7 +104,6 @@ class WhiskeyGame():
             countdown -= sleepdelay
         
         print "GAME OVER"
-        self.dunk.blow_horn()
         if self.whiskey_tally == self.taxes_tally:
             print "TIE! Both get dunked!"
             self.dunk.dunk_both()
