@@ -27,6 +27,41 @@ class WhiskeyGame():
         self.dunk.reset_switches()
         self.last_id = self.api.GetSearch(term = self.SEARCH_STRING, count = 1)[0].id
         
+    def confirm(self, prompt=None, resp=False):
+        """prompts for yes or no response from the user. Returns True for yes and
+        False for no.
+
+        'resp' should be set to the default value assumed by the caller when
+        user simply types ENTER.
+
+        >>> confirm(prompt='Create Directory?', resp=True)
+        Create Directory? [y]|n: 
+        True
+        >>> confirm(prompt='Create Directory?', resp=False)
+        Create Directory? [n]|y: 
+        False
+        >>> confirm(prompt='Create Directory?', resp=False)
+        Create Directory? [n]|y: y
+        True
+        """
+        if prompt is None:
+            prompt = 'Confirm'
+        if resp:
+            prompt = '%s [%s]|%s: ' % (prompt, 'y', 'n')
+        else:
+            prompt = '%s [%s]|%s: ' % (prompt, 'n', 'y')
+        while True:
+            ans = raw_input(prompt)
+            if not ans:
+                return resp
+            if ans not in ['y', 'Y', 'n', 'N']:
+                print 'please enter y or n.'
+                continue
+            if ans == 'y' or ans == 'Y':
+                return True
+            if ans == 'n' or ans == 'N':
+                return False
+
     def run_game(self):
         tweets = self.api.GetSearch(term = self.SEARCH_STRING, since_id = self.last_id, count = 100)
         for item in tweets:
@@ -46,45 +81,6 @@ class WhiskeyGame():
                 self.whiskey_tweets.append(tweetstring)
             if item.id > self.last_id:
                 self.last_id = item.id
-
-    def confirm(self, prompt=None, resp=False):
-        """prompts for yes or no response from the user. Returns True for yes and
-        False for no.
-
-        'resp' should be set to the default value assumed by the caller when
-        user simply types ENTER.
-
-        >>> confirm(prompt='Create Directory?', resp=True)
-        Create Directory? [y]|n: 
-        True
-        >>> confirm(prompt='Create Directory?', resp=False)
-        Create Directory? [n]|y: 
-        False
-        >>> confirm(prompt='Create Directory?', resp=False)
-        Create Directory? [n]|y: y
-        True
-        
-        """
-    
-        if prompt is None:
-            prompt = 'Confirm'
-
-        if resp:
-            prompt = '%s [%s]|%s: ' % (prompt, 'y', 'n')
-        else:
-            prompt = '%s [%s]|%s: ' % (prompt, 'n', 'y')
-                
-        while True:
-            ans = raw_input(prompt)
-            if not ans:
-                return resp
-            if ans not in ['y', 'Y', 'n', 'N']:
-                print 'please enter y or n.'
-                continue
-            if ans == 'y' or ans == 'Y':
-                return True
-            if ans == 'n' or ans == 'N':
-                return False
 
     def game_loop(self):
         # Note, user resource limit is 180 requests every 15 minutes, 
@@ -106,7 +102,6 @@ class WhiskeyGame():
                 self.dunk.dunk_both()
                 return 
             countdown -= sleepdelay
-        
         print "GAME OVER"
         if self.whiskey_tally == self.taxes_tally:
             print "TIE! Both get dunked!"
@@ -120,13 +115,6 @@ class WhiskeyGame():
         print "Taxes:   {0} votes.".format(self.taxes_tally)
         print "Whiskey: {0} votes.".format(self.whiskey_tally)
 
-    def start(self):
-        while True:
-            if self.confirm(prompt="Next game?"):
-                print "Game on!  START START START START START START START START START START START START"
-                self.game_loop()
-                self.reset_game()
-
     def sleep(self, delay):
         timeslice = 0.2
         # sleep for half a second, check the button, repeat
@@ -135,6 +123,14 @@ class WhiskeyGame():
             if self.dunk.check_big_red_button():
                 return True
         return False
+
+    def start(self):
+        while True:
+            if self.confirm(prompt="Next game?"):
+                print "Game on!  START START START START START START START START START START START START"
+                self.game_loop()
+                self.reset_game()
+
 
 print "Starting up..."
 whiskey_game = WhiskeyGame()
