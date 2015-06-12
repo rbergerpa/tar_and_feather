@@ -63,6 +63,20 @@ class WhiskeyGame():
             if ans == 'n' or ans == 'N':
                 return False
 
+    def game_over(self):
+        print "GAME OVER"
+        if self.whiskey_tally == self.taxes_tally:
+            print "TIE! Both get dunked!"
+            self.dunk.dunk_both()
+        if self.whiskey_tally > self.taxes_tally:
+            print "WHISKEY WINS!  Taxes gets dunked!"
+            self.dunk.dunk_right()
+        if self.whiskey_tally < self.taxes_tally:
+            print "TAXES WINS!  Whiskey gets dunked!"
+            self.dunk.dunk_left()
+        print "Taxes:   {0} votes.".format(self.taxes_tally)
+        print "Whiskey: {0} votes.".format(self.whiskey_tally)
+
     def run_game(self):
         tweets = self.api.GetSearch(term = self.SEARCH_STRING, since_id = self.last_id, count = 100)
         for item in tweets:
@@ -103,19 +117,7 @@ class WhiskeyGame():
                 self.dunk.dunk_both()
                 return 
             countdown -= sleepdelay
-        print "GAME OVER"
-        if self.whiskey_tally == self.taxes_tally:
-            print "TIE! Both get dunked!"
-            self.dunk.dunk_both()
-        if self.whiskey_tally > self.taxes_tally:
-            print "WHISKEY WINS!  Taxes gets dunked!"
-            self.dunk.dunk_right()
-        if self.whiskey_tally < self.taxes_tally:
-            print "TAXES WINS!  Whiskey gets dunked!"
-            self.dunk.dunk_left()
-        print "Taxes:   {0} votes.".format(self.taxes_tally)
-        print "Whiskey: {0} votes.".format(self.whiskey_tally)
-
+        self.game_over()
 
     def sleep(self, delay):
         time_slice = 0.2
