@@ -1,4 +1,4 @@
-0) programs are located in /home/pi/tar_and_feather
+
 1) ./run.sh to start the game
 2) initial startup takes 20-30 seconds BEFORE you see any output
 3) game will display prompt:  Next game? [n]|y: 
@@ -6,8 +6,8 @@
 5) after game ends, prompt:  Next game? [n]|y: 
 6) press control-c to break out of prompt loop and exit script.
 
-120 seconds is game duration
-10 second polling loop
+120 seconds game duration
+ 10 second polling loop
 
 Vote by tweeting:
 
