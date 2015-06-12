@@ -18,11 +18,14 @@ class Dunk():
         self.PAUSE_DURATION = 1
         self.WATER_DURATION = 1
         self.FEATHER_DURATION = 1
+
+        self.big_red_button_delay = 130
         
         self.reset_switches()
 
     def reset_switches(self):
         print "RESETTING SWITCHES"
+        self.big_red_button_presses = 0
     
     def blow_horn(self):
         print "HORN ON"
@@ -65,4 +68,14 @@ class Dunk():
         time.sleep(self.FEATHER_DURATION)
         print "RIGHT FEATHER OFF"
         print "LEFT FEATHER OFF"
-  
+
+    def check_big_red_button(self):
+        self.big_red_button_presses += 1
+        print "Checking big red button, presses is {0}".format(self.big_red_button_presses)
+        if self.big_red_button_presses >= self.big_red_button_delay:
+            return True
+        else:
+            return False
+
+
+

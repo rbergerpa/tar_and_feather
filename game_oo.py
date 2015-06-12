@@ -24,6 +24,7 @@ class WhiskeyGame():
         self.whiskey_tally = 0
         self.tax_tweets = []
         self.whiskey_tweets = []
+        self.dunk.reset_switches()
         self.last_id = self.api.GetSearch(term = self.SEARCH_STRING, count = 1)[0].id
         
     def run_game(self):
@@ -100,7 +101,10 @@ class WhiskeyGame():
             print "   {0} votes for whiskey.".format(self.whiskey_tally)
             for tweet in self.whiskey_tweets:
                 print "      " + tweet
-            time.sleep(sleepdelay)
+            if self.sleep(sleepdelay):
+                print "Somebody pressed the Big Red Button!"
+                self.dunk.dunk_both()
+                return 
             countdown -= sleepdelay
         
         print "GAME OVER"
@@ -120,9 +124,17 @@ class WhiskeyGame():
         while True:
             if self.confirm(prompt="Next game?"):
                 print "Game on!  START START START START START START START START START START START START"
-                self.reset_game()
                 self.game_loop()
+                self.reset_game()
 
+    def sleep(self, delay):
+        timeslice = 0.2
+        # sleep for half a second, check the button, repeat
+        for poll in range(1, delay*int(delay/timeslice)):
+            time.sleep(timeslice)
+            if self.dunk.check_big_red_button():
+                return True
+        return False
 
 print "Starting up..."
 whiskey_game = WhiskeyGame()
