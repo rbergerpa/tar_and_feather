@@ -1,4 +1,5 @@
 auth.json
 auth_wuwakaga.json
 auth_hackpgh.json
-
+*~
+*.pyc
