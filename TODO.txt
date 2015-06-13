@@ -4,3 +4,14 @@ Should move the various timing variables and @mention and #hashtag flags and mes
 to a JSON file somewhere.
 
 done? - Hardware Interrupt/Dunk Button
+
+store votes in dictionaries to avoid registering duplicate tweet results from the twitter API.
+
+short beep horn every poll loop for countdown?
+-- or beep every second for the last ten seconds
+
+fix tax double counting (tax is a substring of taxes)
+-- easy obvious fix, check for tax and then check for taxes
+
+catch twitter/dns/http/tcpip errors and do something useful (probably just fake it, keep going, try again, etc)
+

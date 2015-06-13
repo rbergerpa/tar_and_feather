@@ -64,28 +64,30 @@ class WhiskeyGame():
                 return False
 
     def tally_votes(self, text, tweetstring):
+        text = text.encode('ascii', 'ignore')
+        tweetstring = tweetstring.encode('ascii', 'ignore')
         print "Tallying votes, text is {0}".format(text)
         # too many people are going to mis-spell this, so...
         # if "@wiglewhiskey" in text:
         if "#taxes" in text:
             print "Found vote for #taxes."
-            # self.taxes_tally += text.count("#taxes")   # chicago-style voting
-            self.taxes_tally += 1
+            self.taxes_tally += text.count("#taxes")   # chicago-style voting
+            # self.taxes_tally += 1
             self.tax_tweets.append(tweetstring)
-        if "#tax" in text:
-            print "Found vote for #taxes."
-            # self.taxes_tally += text.count("#tax")   # chicago-style voting
-            self.taxes_tally += 1
-            self.tax_tweets.append(tweetstring)
+        #if "#tax" in text:
+        #    print "Found vote for #taxes."
+        #    self.taxes_tally += text.count("#tax")   # chicago-style voting
+        #    # self.taxes_tally += 1
+        #    self.tax_tweets.append(tweetstring)
         if "#whiskey" in text:
             print "Found vote for #whiskey."
-            # self.whiskey_tally += text.count("#whiskey")  # chicago-style voting
-            self.whiskey_tally += 1
+            self.whiskey_tally += text.count("#whiskey")  # chicago-style voting
+            # self.whiskey_tally += 1
             self.whiskey_tweets.append(tweetstring)
         if "#whisky" in text:
             print "Found vote for #whiskey."
-            # self.whiskey_tally += text.count("#whisky")  # chicago-style voting
-            self.whiskey_tally += 1
+            self.whiskey_tally += text.count("#whisky")  # chicago-style voting
+            # self.whiskey_tally += 1
             self.whiskey_tweets.append(tweetstring)
         
     def game_over(self):
@@ -130,6 +132,7 @@ class WhiskeyGame():
                 print "      " + tweet
             if self.sleep(sleepdelay):
                 print "Somebody pressed the Big Red Button!"
+                print "Exiting game and dunking both!"
                 self.dunk.dunk_both()
                 return 
             countdown -= sleepdelay
@@ -142,9 +145,9 @@ class WhiskeyGame():
             sys.stdout.write(".")
             sys.stdout.flush()
             time.sleep(time_slice)
-            if self.dunk.check_big_red_button():
-                print("")
-                return True
+#            if self.dunk.check_big_red_button():
+#                print("")
+#                return True
         print("")
         return False
 

@@ -103,3 +103,11 @@ method.
 The secondary search strings (currently "#whiskey" and "#taxes") are set 
 in game_oo.py in the run_game() method.
 
+WIRING COLORS
+
+GREEN   HORN
+ORANGE  LEFT WATER
+BLUE    LEFT FEATHER
+RED     RIGHT WATER
+PURPLE  RIGHT FEATHER
+BLACK   GROUND
